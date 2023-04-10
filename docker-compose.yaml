@@ -6,7 +6,7 @@ services:
       context: .
       target: development
     image: my-app
-    entrypoint: ['python', 'src/manage.py', 'runserver', '0.0.0.0:8000']
+    entrypoint: ['bash', '/app/bin/server.sh']
     env_file: .env
     volumes:
       - .:/app
