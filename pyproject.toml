@@ -22,6 +22,7 @@ pytest = "*"
 pytest-django = "*"
 django-extensions = "*"
 watchfiles = "*"
+factory-boy = "*"
 
 [build-system]
 requires = ["poetry-core"]
@@ -37,3 +38,10 @@ skip_glob = [
     "*/migrations/*",
 ]
 overwrite_in_place = "true"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "myapp.settings.test"
+python_files = [
+    "test_*.py",
+    "tests.py",
+]
