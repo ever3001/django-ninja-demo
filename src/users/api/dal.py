@@ -12,7 +12,7 @@ def _users_queryset(user: User) -> QuerySet[User]:
     return (
         User.objects.annotate(
             age=(Value(timezone.now().today().year) - F("profile__birth_date__year"))
-        )
+        ).exclude(profile__isnull=True)
         # .exclude(blocked_users=user.id)  # TODO
     )
 

@@ -19,7 +19,7 @@ class UserSchema(ModelSchema):
 
     class Config:
         model = User
-        model_fields = ["first_name", "last_name"]
+        model_fields = ["uuid", "first_name", "last_name"]
 
     @validator("profile", pre=True, allow_reuse=True)
     def pass_age(cls, profile: Profile) -> Profile:
