@@ -2,11 +2,15 @@ from typing import Any, no_type_check
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager as DjangoUserManager
+from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(DjangoUserManager):
     # https://testdriven.io/blog/django-custom-user-model/
+
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().select_related("profile")
 
     # Overrides parent class method and this one has a different signature.
     @no_type_check
