@@ -1,5 +1,4 @@
 from datetime import date
-from random import randint, sample
 
 import factory
 from django.contrib.auth.hashers import make_password
@@ -29,10 +28,6 @@ class MaleUserFactory(UserFactory):
 class FemaleUserFactory(UserFactory):
     first_name = factory.Faker("first_name_female")
     last_name = factory.Faker("last_name_female")
-
-
-def random_sublist(values: list) -> list:
-    return sample(values, randint(1, len(values)))
 
 
 class ProfileFactory(factory.django.DjangoModelFactory):
