@@ -36,8 +36,9 @@ async def user_list(request: Request) -> QuerySet[User]:
     },
 )
 async def user_detail(request: Request, uuid: UUID) -> User:
+    assert isinstance(request.user, User)
     if user := await get_user_or_none(request.user, uuid=uuid):
         await ProfileView.objects.acreate(user=user, viewer=request.user)
         return user
 
-    raise HttpError(HTTPStatus.NOT_FOUND, _("User not found"))
+    raise HttpError(HTTPStatus.NOT_FOUND, _("User not found"))  # type: ignore

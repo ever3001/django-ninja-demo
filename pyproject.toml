@@ -23,6 +23,8 @@ pytest-django = "*"
 django-extensions = "*"
 watchfiles = "*"
 factory-boy = "*"
+mypy = "*"
+django-stubs = "*"
 
 [build-system]
 requires = ["poetry-core"]
