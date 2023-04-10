@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #
+    # 3rd party.
+    "ninja_extra",
+    #
     # 1st party.
     "users.apps.UsersConfig",
 ]

@@ -12,6 +12,7 @@ psycopg2 = "^2.9.5"
 uvicorn = "*"
 gunicorn = "*"
 django-ninja = "*"
+django-ninja-jwt = "*"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
