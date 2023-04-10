@@ -130,4 +130,4 @@ dmypy.json
 
 
 # Collected static files.
-src/static
+static/
