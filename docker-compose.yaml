@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      target: dependencies
+      target: development
     image: my-app
     entrypoint: ['tail', '-f', '/dev/null']
     volumes:

@@ -22,3 +22,27 @@ RUN \
   apt -y install gcc libpq-dev && \
   apt clean && \
   rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml poetry.lock ./
+RUN poetry install --no-root --no-dev
+
+# --------------------------------------------------------------------------- #
+FROM python:3.11-slim as development
+
+COPY --from=poetry /opt/poetry /opt/poetry
+COPY --from=dependencies /app /app
+
+WORKDIR /app
+ENV POETRY_HOME=/opt/poetry
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+ENV PATH="$POETRY_HOME/bin:/app/.venv/bin:$PATH"
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN \
+  apt -y update && \
+  apt -y install git entr libpq-dev && \
+  apt clean && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN poetry install --no-root
