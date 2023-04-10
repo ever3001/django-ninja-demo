@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      target: dependencies
+    image: my-app
+    entrypoint: ['tail', '-f', '/dev/null']
+    volumes:
+      - .:/app
+      # Prevents overriding venv files by the above volume mount.
+      - /app/.venv
+      - vscode_remote_server:/root/.vscode-server/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: my-app-dev
+      POSTGRES_USER: user-dev
+      POSTGRES_PASSWORD: passw0rd-dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5433:5432
+
+  adminer:
+    # https://hub.docker.com/r/michalhosna/adminer
+    image: michalhosna/adminer
+    depends_on:
+      - db
+    environment:
+      ADMINER_SERVER: db
+      ADMINER_DB: my-app-dev
+      ADMINER_USERNAME: user-dev
+      ADMINER_PASSWORD: passw0rd-dev
+      ADMINER_AUTOLOGIN: 1
+      ADMINER_DRIVER: pgsql
+    ports:
+      - 8001:8080
+
+volumes:
+  postgres_data:
+  vscode_remote_server:

@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "my-app"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <your.name@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = ">=4.2"
+psycopg2 = "^2.9.5"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+isort = "*"
+flake8 = "*"
+pytest = "*"
+pytest-django = "*"
+django-extensions = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py311']
+exclude = "(.*/migrations/.*py)"
+
+[tool.isort]
+profile = "black"
+skip_glob = [
+    "*/migrations/*",
+]
+overwrite_in_place = "true"
