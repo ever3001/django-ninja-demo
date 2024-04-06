@@ -4,27 +4,29 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <your.name@example.com>"]
 readme = "README.md"
+package-mode = false 
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = ">=4.2"
-psycopg2 = "^2.9.5"
-uvicorn = "*"
-gunicorn = "*"
-django-ninja = "*"
-django-ninja-jwt = "*"
+django = "^5.0.4"
+psycopg2 = "^2.9.9"
+uvicorn = "^0.29.0"
+gunicorn = "^21.2.0"
+django-ninja = "^1.1.0"
+django-ninja-jwt = "^5.3.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
-isort = "*"
-flake8 = "*"
-pytest = "*"
-pytest-django = "*"
-django-extensions = "*"
-watchfiles = "*"
-factory-boy = "*"
-mypy = "*"
-django-stubs = "*"
+pre-commit = "^3.7.0"
+black = "^24.3.0"
+isort = "^5.13.2"
+flake8 = "^7.0.0"
+pytest = "^8.1.1"
+pytest-django = "^4.8.0"
+django-extensions = "^3.2.3"
+watchfiles = "^0.21.0"
+factory-boy = "^3.3.0"
+mypy = "^1.9.0"
+django-stubs = "^4.2.7"
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,6 +34,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 target-version = ['py311']
+line-length = 79
 exclude = "(.*/migrations/.*py)"
 
 [tool.isort]
